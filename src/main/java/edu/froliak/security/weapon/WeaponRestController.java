@@ -9,6 +9,7 @@ package edu.froliak.security.weapon;
 */
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,18 +46,26 @@ public class WeaponRestController {
         return service.update(Weapon);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/hello/user")
     public String helloUser() {
         return "Hello User!";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("hello/admin")
     public String helloAdmin() {
         return "Hello Admin!";
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("hello/unknown")
     public String helloUnknown() {
         return "Hello Unknown!";
+    }
+
+    @GetMapping("hello/stranger")
+    public String helloStranger() {
+        return "Hello Stranger!";
     }
 }
