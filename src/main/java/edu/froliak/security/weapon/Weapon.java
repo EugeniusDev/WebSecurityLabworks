@@ -18,7 +18,7 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Builder
 @ToString
-public class Weapon {
+public class Weapon extends AuditMetaData{
     @Id
     private String id;
     private String name;
