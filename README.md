@@ -1,1 +1,1 @@
-<img width="1330" height="883" alt="Screenshot 2025-10-22 220505" src="https://github.com/user-attachments/assets/70032d45-1be5-4371-a86b-7dfbdb9d7b9a" />
+<img width="1919" height="1018" alt="access-tests-summary-froliak" src="https://github.com/user-attachments/assets/ffaa1db8-27fc-4135-be02-c7025527ea71" />
