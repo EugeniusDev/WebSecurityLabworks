@@ -9,11 +9,10 @@ package edu.froliak.security.auth;
 */
 
 import lombok.Data;
-import lombok.NonNull;
+
 @Data
 public class AuthenticationRequest {
-    @NonNull
-    private String login;
-    @NonNull
+    private String email;
+
     private String password;
 }

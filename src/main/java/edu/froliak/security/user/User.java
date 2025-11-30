@@ -8,10 +8,7 @@ package edu.froliak.security.user;
   @since 11/8/2025 - 20.27
 */
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +20,8 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
+@Getter
+@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -87,5 +86,9 @@ public class User implements UserDetails, Principal {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
     }
 }

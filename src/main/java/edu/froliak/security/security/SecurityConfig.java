@@ -1,4 +1,4 @@
-package edu.froliak.security.config;
+package edu.froliak.security.security;
 
 /*
   @author eugen
@@ -19,14 +19,16 @@ import org.springframework.security.authorization.method.AuthorizationManagerBef
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
+
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
@@ -40,16 +42,10 @@ public class SecurityConfig {
 
         http.csrf(csrf ->csrf.disable())
                 .authorizeHttpRequests( req ->
-                        req.requestMatchers("/index.html", "/auth/**").permitAll()
-                                .anyRequest().authenticated())
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        req.anyRequest().permitAll())
+                .sessionManagement(session
+                        -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider);
         return http.build();
-    }
-
-    @Bean
-    public static PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
