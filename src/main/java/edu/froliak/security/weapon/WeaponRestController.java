@@ -46,19 +46,19 @@ public class WeaponRestController {
         return service.update(Weapon);
     }
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/hello/user")
     public String helloUser() {
         return "Hello User!";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("hello/admin")
     public String helloAdmin() {
         return "Hello Admin!";
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("hello/unknown")
     public String helloUnknown() {
         return "Hello Unknown!";

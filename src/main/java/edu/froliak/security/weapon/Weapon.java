@@ -10,6 +10,7 @@ package edu.froliak.security.weapon;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Getter
@@ -18,6 +19,7 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Builder
 @ToString
+@Document
 public class Weapon extends AuditMetaData{
     @Id
     private String id;
