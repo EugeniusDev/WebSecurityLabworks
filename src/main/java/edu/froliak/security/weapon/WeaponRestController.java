@@ -21,30 +21,36 @@ public class WeaponRestController {
 
     private final WeaponService service;
 
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping
     public List<Weapon> getWeapons() {
         return service.getAll();
     }
 
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/{id}")
     public Weapon getOneWeapon(@PathVariable String id) {
         return service.getById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable String id) {
         service.deleteById(id);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public Weapon create(@RequestBody Weapon Weapon) {
         return service.create(Weapon);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping
     public Weapon update(@RequestBody Weapon Weapon) {
         return service.update(Weapon);
     }
+
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/hello/user")
